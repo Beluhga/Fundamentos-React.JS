@@ -1,0 +1,24 @@
+# Key no React
+
+## Por que única?
+
+3 momentos em que um componentee é renderizadfo novamente no React.
+
+1. Quando o estado altera;
+2. quando a propriedade altera;
+3. Quando um componente pai renderiza novamente;
+
+---------
+1, 2, 3, 4
+----------
+
+1, 2, 3, 4, 5
+
+## Por que não posso usar o indice do array?
+
+'''js
+
+const post = [1, 2, 3, 4, 5]
+
+const posts = [1, 2, 5, 4, 3]
+

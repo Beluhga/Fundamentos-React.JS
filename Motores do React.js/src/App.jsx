@@ -2,9 +2,41 @@ import { Sidebar } from './components/SideBar';
 import { Post } from './components/Post';
 import { Header } from './components/Header';
 
-
 import styles from './App.module.css';
 
+const posts = [
+  {
+    id: 1,
+    author: {
+      avatarUrl: "https://github.com/Beluhga.png",
+      name: "Michael Albuquerque",
+      role: "Desenvolvedor Mobile"
+    },
+    content: [
+      {type: 'paragrafo', content:  'Fala galeraa 👋'},
+      {type: 'paragrafo', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀'},
+      {type: 'link', content: 'jane.design/doctorcare'},
+
+    ],
+    publishedAt: new Date('2022-09-28 20:00:00'),
+  },
+
+  {
+    id: 2,
+    author: {
+      avatarUrl: "https://github.com/marcosaureliodiasmoura.png",
+      name: "Marcos Moura",
+      role: "Desenvolvedor Front-End"
+    },
+    content: [
+      {type: 'paragrafo', content:  'Fala galeraa 👋'},
+      {type: 'paragrafo', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀'},
+      {type: 'link', content: 'jane.design/doctorcare'},
+
+    ],
+    publishedAt: new Date('2022-09-28 20:20:00'),
+  },
+];
 
 import './global.css';
 function App() {
@@ -18,15 +50,17 @@ function App() {
   <div className={styles.wrapper}>
     <Sidebar />
     <main>
-      <Post
-        author="Michael Fernando"
-        content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+      
+     {posts.map(post => { /*map: pq ele retorna sempre algo dentro dele */
+      return (
+        <Post 
+          key={post.id}
+          author={post.author}
+          content={post.content}
+          publishedAt={post.publishedAt}
         />
-
-      <Post 
-        author="Marcus Vinicius"
-        content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-      />
+      )
+     })}
 
     </main>
     </div>
@@ -36,3 +70,9 @@ function App() {
 }
 
 export default App
+
+/*
+author: { avatar_url: "", name: "", role: ""}
+publishedAt: Date
+content: String
+ */
