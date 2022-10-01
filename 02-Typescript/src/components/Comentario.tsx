@@ -1,9 +1,15 @@
-import { ThumbsUp, Trash } from 'phosphor-react';
 import { useState } from 'react';
+
+import { ThumbsUp, Trash } from 'phosphor-react';
 import { Avatar } from './Avatar';
 import styles from './Comentario.module.css';
 
-export function Comentario({content, deleteComment}){
+interface CommentProps {
+    content: string;
+    deleteComment: (comment: string) => void; /*comment do Post */
+}
+
+export function Comentario({content, deleteComment}: CommentProps){
     const [likeCount, setLikeCount] = useState(0)
     function handleDeleteComment(){
         deleteComment(content);
@@ -16,7 +22,7 @@ export function Comentario({content, deleteComment}){
 
     return(
        <div className={styles.comment}>
-        <Avatar hasBorder={false} src="https://github.com/Beluhga.png" />
+        <Avatar hasBorder={false} src="https://github.com/Beluhga.png" alt="" />
 
         <div className={styles.commentBox}>
             <div className={styles.commentContent}>

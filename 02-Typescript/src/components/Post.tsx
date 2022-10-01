@@ -1,12 +1,28 @@
+import { useState, FormEvent, ChangeEvent, InvalidEvent } from 'react';
 import { Comentario } from './Comentario';
 import styles from './Post.module.css';
 import { Avatar } from './Avatar';
 import { format, formatDistanceToNow} from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
-import { useState } from 'react';
 
+interface Author {
+    name: string;
+    role: string;
+    avatarUrl: string;
+}
 
-export function Post({author, publishedAt, content}){ /*author pra nao precisar colocar props: exemplo: props.author.avatarUrl */
+interface Content {
+    type: 'paragraph' | 'link';
+    content: string;
+}
+
+interface PostProps {
+    author: Author;
+    publishedAt: Date;
+    content: Content[];
+}
+
+export function Post({author, publishedAt, content}:PostProps){ /*author pra nao precisar colocar props: exemplo: props.author.avatarUrl */
 const [comments, setComments] = useState([
 'Post Muito bacana, hein? '
 ]);
@@ -22,7 +38,7 @@ const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, { /* Distanc
     addSuffix: true, /*para ficar "Em cerca de uma hora ou há um dia*/
 })
 
-    function handleCreateNewComment(){
+    function handleCreateNewComment(event: FormEvent){
         event.preventDefault() /*Para evitar de redirecionar para outro lugar */
 
         setComments([...comments, newCommentText]);
@@ -30,19 +46,19 @@ const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, { /* Distanc
 
     }
 
-    function handleNewCommentChange() {
+    function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) { /*HTMLTextAreaElement: Local onde aconteceu o evento */
         event.target.setCustomValidity('');
         setNewCommentText(event.target.value);
     }
 
-    function deleteComment(commentToDelete){
+    function deleteComment(commentToDelete: string){
         const CriarListadeComentariosSemODeletado = comments.filter(comment => {
             return comment !== commentToDelete;
         })
         setComments(CriarListadeComentariosSemODeletado);
     }
 
-    function handleNewCommentInvalid(){ /*Mensagem para quando for obrigatorio para posta algo */
+    function handleNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>){ /*Mensagem para quando for obrigatorio para posta algo */
         event.target.setCustomValidity('Esse campo é obrigatorio')
     }
 
@@ -66,7 +82,7 @@ const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, { /* Distanc
 
             <div className={styles.content}>
                 {content.map(line => {
-                    if (line.type === 'paragrafo') {
+                    if (line.type === 'paragraph') {
                         // content dentro do App.jsx
                         return <p key={line.content}>{line.content}</p>;
                     }else if (line.type === 'link') {

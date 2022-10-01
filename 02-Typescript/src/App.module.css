@@ -1,0 +1,29 @@
+.wrapper {
+    max-width: 70rem;
+    margin: 2rem auto;
+    padding: 0 1rem;
+
+    display: grid;
+    grid-template-columns: 256px 1fr; /*primeira coluna 256px e a segunda coluna adapitavel a tela*/
+    gap: 2rem;
+    align-items: flex-start;
+    
+}
+
+@media (max-width: 768px){ /* para ficar responsivel no celular*/
+    html {
+        font-size: 87.5%;
+    }
+    .wrapper{
+        grid-template-columns: 1fr; /*Ira ter apenas uma coluna na tela*/
+    }
+}
+
+/*
+
+16 -> 100%
+14 -> x
+
+14 * 100 / 16 = 87.5%
+
+*/
