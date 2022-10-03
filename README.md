@@ -11,7 +11,7 @@ Use o Date-fns para lidar com a data de cada post, e mostra a diferença de hora
  
 Usei o phosphor-react para lidar com os ícones.
 
-## Layout mobile
+## Layout Front-End
 
 ![2022-10-02 22-22-15](https://user-images.githubusercontent.com/82901722/193487493-a0c00984-c0bf-4345-b58b-a3e8462ec8ea.gif)
 
