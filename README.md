@@ -1,4 +1,4 @@
-# Fundamentos-React.JS
+# Feed
 
 
 [![NPM](https://img.shields.io/npm/l/react)](hhttps://github.com/Beluhga/AppTest-paraEstudo/blob/main/LICENSE) 
